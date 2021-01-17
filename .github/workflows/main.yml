@@ -42,9 +42,13 @@ jobs:
       # The CMake binaries on the Github Actions machines are (as of this writing) 3.12
       #run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=$BUILD_TYPE
       #run: cmake -G "Visual Studio 15 2017" -A Win64 -DCMAKE_BUILD_TYPE=$BUILD_TYPE
-    - name: Build Win32
-      run: |
-           msbuild.exe Freeswitch.2017.sln /t:rebuild /fl /verbosity:normal /p:Configuration=Release;Platform=Win32 -maxcpucount:4
+    #- name: Build Win32
+    #  run: |
+    #      msbuild.exe Freeswitch.2017.sln /t:rebuild /fl /verbosity:normal /p:Configuration=Release;Platform=Win32 -maxcpucount:4
+    # Not build: Error
+    # The term 'Platform=Win32' is not recognized as a name of a cmdlet, function, script file, or
+    # | executable program. Check the spelling of the name, or if a path was included, verify that the path is
+    # | correct and try again. 
       
     - name: Build x64
       run: | 
