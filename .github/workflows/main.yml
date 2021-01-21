@@ -56,7 +56,7 @@ jobs:
            
     - name: Tests
       run: | 
-           DIR WIN32\
+           DIR WIN32\Release
            #DIR bin/
            #DIR WIN32\Release freeswitch\x64\Release 
            #DIR WIN32\Release freeswitch\x64\Release
@@ -82,7 +82,7 @@ jobs:
       with: 
         name: freeswitch
         path: | 
-              Win32/Release/conf
-              Win32/Release/mod/*.dll
-              Win32/Release/*.dll
-              Win32/Release/freeswitchcore.lib
+              Win32\Release\conf
+              Win32\Release\mod\*.dll
+              Win32\Release\*.dll
+              Win32\Release\freeswitchcore.lib
