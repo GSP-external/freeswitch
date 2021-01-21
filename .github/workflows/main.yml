@@ -79,10 +79,11 @@ jobs:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
     - name: Upload artifact
-      uses: actions/upload-artifact@v1.0.0
+      uses: actions/upload-artifact@v2
       with: 
         name: freeswitch
         path: |
-              Win32\Release\mod\*.dll
-              Win32\Release\*.dll
-              Win32\Release\freeswitchcore.lib
+              Win32/Release/mod/*.dll
+              Win32/Release/*.dll
+              Win32/Release/freeswitchcore.lib
+              Win32/Release/conf
