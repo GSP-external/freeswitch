@@ -56,10 +56,10 @@ jobs:
            
     - name: Tests
       run: | 
-           DIR
-           DIR bin/
-           DIR WIN32\Release freeswitch\x64\Release 
-           DIR WIN32\Release freeswitch\x64\Release
+           DIR WIN32\
+           #DIR bin/
+           #DIR WIN32\Release freeswitch\x64\Release 
+           #DIR WIN32\Release freeswitch\x64\Release
            #  CD bin/Win32/Release/
            #  DIR
            #  cmd.exe /c tests.exe     
@@ -79,6 +79,9 @@ jobs:
 
     - name: Upload artifact
       uses: actions/upload-artifact@v1.0.0
-      with:
+      with: |
         name: freeswitch
-        path: Win32/Release       
+        path: Win32/Release/conf
+        path: Win32/Release/mod/*.dll
+        path: Win32/Release/*.dll
+        path: Win32/Release/freeswitchcore.lib
