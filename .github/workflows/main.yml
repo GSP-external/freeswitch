@@ -9,10 +9,6 @@ env:
 
 jobs:
   build:
-    # The CMake configure and build commands are platform agnostic and should work equally
-    # well on Windows or Mac.  You can convert this to a matrix build if you need
-    # cross-platform coverage.
-    # See: https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
     runs-on: windows-2016
 
     steps:
@@ -23,60 +19,9 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-#     - name: Create Build Environment
-#       # Some projects don't allow in-source building, so create a separate build directory
-#       # We'll use this as our working directory for all subsequent commands
-#       run: |
-#            MKDIR ${{runner.workspace}}/build/
-#            MKDIR ${{runner.workspace}}/build/Win32
-#            MKDIR ${{runner.workspace}}/build/Win64
-#            #cmake -E make_directory ${{runner.workspace}}/build
-
-    #- name: Configure CMake
-      # Use a bash shell so we can use the same syntax for environment variable
-      # access regardless of the host operating system
-      #shell: bash
-      #working-directory: ${{runner.workspace}}/build
-      # Note the current convention is to use the -S and -B options here to specify source 
-      # and build directories, but this is only available with CMake 3.13 and higher.  
-      # The CMake binaries on the Github Actions machines are (as of this writing) 3.12
-      #run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=$BUILD_TYPE
-      #run: cmake -G "Visual Studio 15 2017" -A Win64 -DCMAKE_BUILD_TYPE=$BUILD_TYPE
     - name: Build Win32
       run: |
-          cmd.exe /c build-win32.bat
-          
-    # Not build: Error
-    # The term 'Platform=Win32' is not recognized as a name of a cmdlet, function, script file, or
-    # | executable program. Check the spelling of the name, or if a path was included, verify that the path is
-    # | correct and try again. 
-      
-    #- name: Build x64
-    #  run: |    
-    #       msbuild.exe Freeswitch.2017.sln /t:rebuild /fl /verbosity:normal /p:Configuration=Release;Platform=x64 -maxcpucount:4
-           
-    - name: Tests
-      run: | 
-           DIR WIN32\Release
-           #DIR bin/
-           #DIR WIN32\Release freeswitch\x64\Release 
-           #DIR WIN32\Release freeswitch\x64\Release
-           #  CD bin/Win32/Release/
-           #  DIR
-           #  cmd.exe /c tests.exe     
-           
-    - name: Create a new GitHub release if a new tag is pushed
-      uses: softprops/action-gh-release@v1
-      with:
-        name: v${{ env.GITHUB_TAG_NAME }}
-        prerelease: false
-        draft: true
-        files: |
-          \Win32\Release freeswitch\x64\Release\*
-        body: (empty)
-      if: startsWith(github.ref, 'refs/tags/')
-      env:
-        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          cmd.exe /c buildwin.bat
 
     - name: Upload artifact
       uses: actions/upload-artifact@v2
@@ -87,3 +32,15 @@ jobs:
               Win32/Release/*.dll
               Win32/Release/freeswitchcore.lib
               Win32/Release/conf
+              Win32/Debug/mod/*.dll
+              Win32/Debug/*.dll
+              Win32/Debug/freeswitchcore.lib
+              Win32/Debug/conf
+              x64/Release/mod/*.dll
+              x64/Release/*.dll
+              x64/Release/freeswitchcore.lib
+              x64/Release/conf
+              x64/Debug/mod/*.dll
+              x64/Debug/*.dll
+              x64/Debug/freeswitchcore.lib
+              x64/Debug/conf
