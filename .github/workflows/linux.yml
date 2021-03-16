@@ -11,14 +11,14 @@ jobs:
       uses: actions/checkout@v2
       
     - name: Install libraries
-      run: sudo apt-get install libtool-bin libswscale-dev libavformat-dev libpq-dev 
+      run: sudo apt-get install libtool-bin libswscale-dev libavformat-dev libpq-dev libks
     
     - name: Install spandsp 
       run: |
         git clone https://github.com/freeswitch/spandsp
         cd spandsp
         ./bootstrap.sh
-        ./configure.sh
+        ./configure
         make
         sudo make install
         
@@ -27,7 +27,16 @@ jobs:
         git clone https://github.com/freeswitch/sofia-sip
         cd sofia-sip
         ./bootstrap.sh
-        ./configure.sh
+        ./configure
+        make
+        sudo make install      
+        
+    - name: Install libks
+      run: |
+        git clone https://github.com/signalwire/libks.git
+        cd libks
+        ./bootstrap.sh
+        ./configure
         make
         sudo make install      
     
@@ -35,7 +44,7 @@ jobs:
       run: ./bootstrap.sh    
     
     - name: configure
-      run: ./configure.sh
+      run: ./configure
 
     - name: make
       run: make
