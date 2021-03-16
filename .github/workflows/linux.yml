@@ -18,16 +18,16 @@ jobs:
         git clone https://github.com/freeswitch/spandsp
         cd spandsp
         ./bootstrap.sh
-        ./configure
+        ./configure.sh
         make
         sudo make install
         
     - name: Install sofia-sip 
       run: |
         git clone https://github.com/freeswitch/sofia-sip
-        cd ../sofia-sip
+        cd sofia-sip
         ./bootstrap.sh
-        ./configure
+        ./configure.sh
         make
         sudo make install      
     
@@ -35,7 +35,7 @@ jobs:
       run: ./bootstrap.sh    
     
     - name: configure
-      run: ./configure
+      run: ./configure.sh
 
     - name: make
       run: make
