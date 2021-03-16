@@ -9,6 +9,9 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
+      
+    - name: Install libraries
+      run: sudo apt-get install libtool-bin autoconf libswscale-dev libavformat-dev libpq-dev mod_pgsql
     
     - name: bootstrap
       run: ./bootstrap.sh    
