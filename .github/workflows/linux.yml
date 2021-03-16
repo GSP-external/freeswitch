@@ -35,8 +35,7 @@ jobs:
       run: |
         git clone https://github.com/signalwire/libks.git
         cd libks
-        ./bootstrap.sh
-        ./configure
+        cmake
         make
         sudo make install      
     
