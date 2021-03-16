@@ -12,7 +12,23 @@ jobs:
       
     - name: Install libraries
       run: sudo apt-get install libtool-bin autoconf libswscale-dev libavformat-dev libpq-dev 
-      
+    
+    - name: Install spandsp 
+      run: |
+        git clone https://github.com/freeswitch/spandsp
+        cd spandsp
+        ./configure
+        make
+        sudo make install
+        
+    - name: Install sofia-sip 
+      run: |
+        git clone https://github.com/freeswitch/sofia-sip
+        cd ../sofia-sip
+        ./configure
+        make
+        sudo make install      
+    
     - name: bootstrap
       run: ./bootstrap.sh    
     
