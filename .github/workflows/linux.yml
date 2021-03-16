@@ -42,7 +42,7 @@ jobs:
     - name: Install signalware-c
       run: |
         git clone https://github.com/signalwire/signalwire-c.git
-        cd signalware-c
+        cd signalwire-c
         cmake .
         make 
         sudo make install
