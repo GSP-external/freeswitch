@@ -35,7 +35,7 @@ jobs:
       run: |
         git clone https://github.com/signalwire/libks.git
         cd libks
-        cmake
+        cmake .
         make
         sudo make install      
     
