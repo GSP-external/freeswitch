@@ -30,17 +30,18 @@ jobs:
         path: |
               Win32/Release/mod/*.dll
               Win32/Release/*.dll
+              Win32/Release/*.exe
               Win32/Release/freeswitchcore.lib
               Win32/Release/conf
               Win32/Debug/mod/*.dll
               Win32/Debug/*.dll
               Win32/Debug/freeswitchcore.lib
               Win32/Debug/conf
-              x64/Release/mod/*.dll
-              x64/Release/*.dll
-              x64/Release/freeswitchcore.lib
-              x64/Release/conf
-              x64/Debug/mod/*.dll
-              x64/Debug/*.dll
-              x64/Debug/freeswitchcore.lib
-              x64/Debug/conf
+              # x64/Release/mod/*.dll
+              # x64/Release/*.dll
+              # x64/Release/freeswitchcore.lib
+              # x64/Release/conf
+              # x64/Debug/mod/*.dll
+              # x64/Debug/*.dll
+              # x64/Debug/freeswitchcore.lib
+              # x64/Debug/conf
