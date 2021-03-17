@@ -61,4 +61,4 @@ jobs:
       with: 
         name: freeswitch-linux
         path: | 
-            .libs/libfreeswitch.a
+            .libs/libfreeswitch.a            

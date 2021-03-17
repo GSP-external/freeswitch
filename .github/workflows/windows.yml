@@ -26,7 +26,7 @@ jobs:
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with: 
-        name: freeswitch
+        name: freeswitch-windows
         path: |
               Win32/Release/mod/*.dll
               Win32/Release/*.dll
@@ -35,6 +35,7 @@ jobs:
               Win32/Release/conf
               Win32/Debug/mod/*.dll
               Win32/Debug/*.dll
+              Win32/Release/*.exe
               Win32/Debug/freeswitchcore.lib
               Win32/Debug/conf
               # x64/Release/mod/*.dll
