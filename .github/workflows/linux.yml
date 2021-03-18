@@ -13,7 +13,7 @@ jobs:
     - name: Install libraries
       run: sudo apt-get install libtool-bin libswscale-dev libavformat-dev libpq-dev libcurl4-openssl-dev libexpat1-dev libgnutls28-dev libtiff5-dev libx11-dev unixodbc-dev zlib1g-dev libasound2-dev libogg-dev libvorbis-dev libperl-dev libgdbm-dev libdb-dev uuid-dev libsndfile1-dev libspeex-dev libspeexdsp-dev libldns-dev libedit-dev yasm lua50 libopus-dev
     
-    - name: Install spandsp 
+    - name: Spandsp (Signalwire)
       run: |
         git clone https://github.com/freeswitch/spandsp
         cd spandsp
@@ -22,7 +22,7 @@ jobs:
         make
         sudo make install
         
-    - name: Install sofia-sip 
+    - name: Sofia-sip (Signalwire)
       run: |
         git clone https://github.com/freeswitch/sofia-sip
         cd sofia-sip
@@ -31,7 +31,7 @@ jobs:
         make
         sudo make install      
         
-    - name: Install libks
+    - name: Libks (Signalwire)
       run: |
         git clone https://github.com/signalwire/libks.git
         cd libks
@@ -39,7 +39,7 @@ jobs:
         make
         sudo make install      
         
-    - name: Install signalwire-c
+    - name: Signalwire-c (Signalwire)
       run: |
         git clone https://github.com/signalwire/signalwire-c.git
         cd signalwire-c
@@ -47,18 +47,29 @@ jobs:
         make 
         sudo make install
     
-    - name: bootstrap
-      run: ./bootstrap.sh    
-    
-    - name: configure
-      run: ./configure
-
-    - name: make
-      run: make
+    - name: Freeswitch (Signalwire)
+      run: | 
+        ./bootstrap.sh    
+        ./configure
+        make
+        mkdir binaries/libs
+        cp ./src/mod/formats/mod_sndfile/.libs/libsndfilemod.a ./binaries/libs/libavmod.a
+        cp ./src/mod/applications/mod_av/.libs/libavmod.a ./binaries/libs/libavmod.a
+        cp ./src/mod/applications/mod_conference/.libs/libmodconference.a ./binaries/libs/libmodconference.a
+        cp ./src/mod/endpoints/mod_sofia/.libs/libsofiamod.a ./binaries/libs/libsofiamod.a
+        cp ./src/mod/endpoints/mod_verto/.libs/MCAST.a ./binaries/libs/MCAST.a
+        cp ./libs/apr-util/xml/expat/lib/.libs/libexpat.a ./binaries/libs/libexpat.a
+        cp ./libs/apr-util/.libs/libaprutil-1.a ./binaries/libs/libaprutil-1.a
+        cp ./libs/srtp/.libs/libsrtp.a ./binaries/libs/libsrtp.a
+        cp ./libs/apr/.libs/libapr-1.a ./binaries/libs/libapr-1.a
+        cp ./libs/libvpx/libvpx_g.a ./binaries/libs/libvpx_g.a
+        cp ./libs/libvpx/libvpx.a ./binaries/libs/libvpx.a
+        cp ./.libs/libfreeswitch.a ./binaries/libs/libfreeswitch.a
+        cp ./.libs/libfreeswitch_libyuv.a ./binaries/libs/libfreeswitch_libyuv.a
       
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with: 
         name: freeswitch-linux
         path: | 
-            .libs/libfreeswitch.a            
+            ./binaries/libs            
