@@ -52,7 +52,7 @@ jobs:
         ./bootstrap.sh    
         ./configure
         make
-        mkdir binaries/libs
+        mkdir ./binaries/libs
         cp ./src/mod/formats/mod_sndfile/.libs/libsndfilemod.a ./binaries/libs/libavmod.a
         cp ./src/mod/applications/mod_av/.libs/libavmod.a ./binaries/libs/libavmod.a
         cp ./src/mod/applications/mod_conference/.libs/libmodconference.a ./binaries/libs/libmodconference.a
