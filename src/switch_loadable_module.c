@@ -2919,7 +2919,8 @@ SWITCH_DECLARE(int) switch_loadable_module_get_codecs_sorted(const switch_codec_
 					switch_set_string(fmtp_array[i], fmtp);
 				}
 				array[i++] = imp;
-				goto found;
+				// goto found;
+				// If we want to handle both static and dynamic IANA codes for 44100khz it's neccessary to collect all options
 
 			}
 
